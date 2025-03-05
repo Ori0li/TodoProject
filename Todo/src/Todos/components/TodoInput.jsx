@@ -18,7 +18,7 @@ const TodoInput = ({ onAddTodo }) => {
 
   return (
     <div className="inputContainer">
-      <Input onChange={changeValue} value={inputValue}></Input>
+      <Input type="text" onChange={changeValue} value={inputValue}></Input>
 
       <button onClick={handleAddClick}>+</button>
     </div>

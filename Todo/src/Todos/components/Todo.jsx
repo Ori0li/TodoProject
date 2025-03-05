@@ -1,50 +1,11 @@
-import { useEffect, useState } from "react";
 import TodoList from "./TodoList";
 import DoneList from "./DoneList";
 import TodoInput from "./TodoInput";
+import { todoStore } from "../Store/todoStore";
 
 const Todo = () => {
-  const [todos, setTodos] = useState([]);
-  const [doneTodos, setDoneTodos] = useState([]);
-
-  // useEffect(() => {
-  //   const storedTodos = JSON.parse(localStorage.getItem("todos"));
-  //   const storedDoneTodos = JSON.parse(localStorage.getItem("doneTodos"));
-  //   setTodos(storedTodos);
-  //   setDoneTodos(storedDoneTodos);
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("todos", JSON.stringify(todos));
-  // }, [todos]);
-
-  // useEffect(() => {
-  //   localStorage.setItem("doneTodos", JSON.stringify(doneTodos));
-  // }, [doneTodos]);
-
-  const addTodo = (text) => {
-    setTodos((prev) => [...prev, { text: text, isChecked: false }]);
-  };
-
-  const onCheck = (i) => {
-    const newArr = [...todos];
-    const checkedTodo = newArr.splice(i, 1)[0];
-    checkedTodo.isChecked = !checkedTodo.isChecked;
-    setTodos(newArr);
-    setDoneTodos((prev) => [...prev, checkedTodo]);
-  };
-
-  const onDelete = (i) => {
-    const newArr = [...todos];
-    newArr.splice(i, 1);
-    setTodos(newArr);
-  };
-
-  const onDoneDelete = (i) => {
-    const newArr = [...doneTodos];
-    newArr.splice(i, 1);
-    setDoneTodos(newArr);
-  };
+  const { todos, doneTodos, addTodo, onCheck, onDelete, onDoneDelete } =
+    todoStore();
 
   return (
     <div className="toDoContainer">
